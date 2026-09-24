@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cosmic Humor Analyzer & Quiz Emporium</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            900: '#4c1d95',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(30, 27, 75, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        .option-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(139, 92, 246, 0.6);
+        }
+    </style>
+</head>
+<body class="h-full bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-purple-500 selection:text-white">
+
+    <header class="w-full py-6 px-8 border-b border-purple-900/40 flex justify-between items-center bg-slate-900/50 backdrop-blur-md">
+        <div class="flex items-center space-x-3">
+            <span class="text-3xl">🔮</span>
+            <h1 class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">
+                Cosmic Humor Analyzer
+            </h1>
+        </div>
+        <div id="step-indicator" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-purple-950/80 border border-purple-800 text-purple-300">
+            Step 1: Introduction & Persona Setup
+        </div>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center p-4 sm:p-6 md:p-8">
+        <div class="w-full max-w-3xl glass-panel rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+            
+            <!-- Ambient glow effects -->
+            <div class="absolute -top-24 -right-24 w-72 h-72 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- STEP 1: Nickname & Age Disclaimer Setup -->
+            <div id="view-step1" class="space-y-6 relative z-10">
+                <div class="space-y-2 text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-white">Welcome, Adventurer!</h2>
+                    <p class="text-purple-300 text-sm max-w-xl mx-auto">
+                        Prepare to uncover absurd truths about your inner self through highly unscientific, delightfully bizarre psychological assessments.
+                    </p>
+                </div>
+
+                <!-- Disclaimer Box -->
+                <div class="p-4 rounded-2xl bg-indigo-950/60 border border-indigo-800/60 text-xs text-indigo-200 leading-relaxed space-y-1">
+                    <p class="font-bold text-indigo-300 uppercase tracking-wider flex items-center gap-1.5">
+                        <span>⚠️</span> Important Fictional Game Disclaimer & Privacy Notice:
+                    </p>
+                    <p>
+                        This is an entirely fictional game created purely for humor and entertainment. All results, traits, superpowers, and mystical revelations are computer-generated parodies and carry zero legal or metaphysical weight. Furthermore, <strong>your age will be collected solely to confuse our algorithms and will NOT appear anywhere in your final evaluation or results—guaranteed!</strong>
+                    </p>
+                </div>
+
+                <form id="form-step1" class="space-y-4 pt-2" onsubmit="handleStep1Submit(event)">
+                    <div>
+                        <label class="block text-sm font-medium text-purple-200 mb-1.5" for="input-nickname">Your Nickname or Alias</label>
+                        <input type="text" id="input-nickname" required placeholder="e.g. Sir Quacks-a-Lot"
+                            class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-purple-900/60 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-purple-200 mb-1.5" for="input-age">Your Age (Strictly Confidential / Hidden Forever)</label>
+                        <input type="number" id="input-age" required min="1" max="130" placeholder="e.g. 25"
+                            class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-purple-900/60 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+                        <p class="text-[11px] text-pink-400/90 mt-1">🔒 Reminders: Your age is safely locked away and will never be mentioned in the summary!</p>
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit" class="w-full py-4 px-6 rounded-xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-lg shadow-purple-600/30 transition transform active:scale-[0.99] flex items-center justify-center gap-2">
+                            <span>Proceed to Theme Selection</span>
+                            <span>🚀</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- STEP 2: Theme Selection -->
+            <div id="view-step2" class="hidden space-y-6 relative z-10">
+                <div class="space-y-2 text-center">
+                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Choose Your Path of Discovery</h2>
+                    <p class="text-purple-300 text-sm">
+                        Hello, <span id="display-nickname" class="text-pink-400 font-semibold"></span>! Select which cosmic mirror you wish to gaze into today:
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2" id="themes-grid">
+                    <!-- Themes populated dynamically by script -->
+                </div>
+            </div>
+
+            <!-- STEP 3: Quiz Questions View -->
+            <div id="view-quiz" class="hidden space-y-6 relative z-10">
+                <div class="flex justify-between items-center text-xs font-semibold text-purple-300 border-b border-purple-900/50 pb-3">
+                    <span id="quiz-theme-title" class="text-pink-400 uppercase tracking-wider">Theme</span>
+                    <span id="quiz-progress" class="bg-purple-900/60 px-2.5 py-1 rounded-full border border-purple-700/50">Question 1 of 8</span>
+                </div>
+
+                <div class="space-y-3">
+                    <h3 id="question-text" class="text-lg sm:text-xl font-bold text-white leading-snug">Question goes here?</h3>
+                    <p class="text-xs text-purple-400 italic">Select the option that speaks most deeply to your soul (or makes you laugh the hardest).</p>
+                </div>
+
+                <div class="space-y-2.5" id="options-container">
+                    <!-- Options populated dynamically -->
+                </div>
+
+                <div class="flex justify-between pt-4">
+                    <button id="btn-prev" onclick="prevQuestion()" class="px-4 py-2 rounded-xl bg-slate-900/60 hover:bg-slate-800 border border-purple-900/50 text-xs text-purple-300 font-medium transition disabled:opacity-30 disabled:cursor-not-allowed">
+                        ← Previous
+                    </button>
+                    <button id="btn-next" onclick="nextQuestion()" disabled class="px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-xs text-white font-bold transition disabled:opacity-40 disabled:cursor-not-allowed shadow-md shadow-purple-600/25">
+                        Next Question →
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 4: Results & Summary View -->
+            <div id="view-results" class="hidden space-y-6 relative z-10">
+                <div class="text-center space-y-2">
+                    <div class="inline-block p-3 rounded-full bg-purple-900/40 border border-purple-700/60 text-3xl mb-1">✨</div>
+                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Your Cosmic Dossier is Ready!</h2>
+                    <p class="text-purple-300 text-sm">
+                        Analysis complete for <span id="result-nickname" class="text-pink-400 font-semibold"></span> under the theme <span id="result-theme" class="text-indigo-300 font-semibold"></span>.
+                    </p>
+                </div>
+
+                <!-- Results Report Box -->
+                <div class="p-5 sm:p-6 rounded-2xl bg-slate-900/80 border border-purple-800/50 space-y-4 max-h-[55vh] overflow-y-auto pr-2 custom-scrollbar">
+                    <div class="space-y-1 border-b border-purple-900/50 pb-3">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-purple-400">Primary Revelations</h4>
+                        <p id="result-headline" class="text-lg font-bold text-white"></p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-purple-400">Psychological Breakdown & Humor Analysis</h4>
+                        <p id="result-description" class="text-sm text-slate-200 leading-relaxed"></p>
+                    </div>
+
+                    <div id="furniture-reveal-box" class="hidden pt-3 border-t border-purple-900/50 space-y-2 bg-purple-950/30 p-4 rounded-xl border border-purple-800/30">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-pink-400 flex items-center gap-1.5">
+                            <span>🛋️</span> Secret Household Object Manifestation (Surprise Punchline)
+                        </h4>
+                        <p id="result-furniture" class="text-sm text-purple-200 italic leading-relaxed"></p>
+                    </div>
+
+                    <div class="pt-2 text-xs text-purple-400/80 italic flex items-center justify-between border-t border-purple-900/30 pt-3">
+                        <span>🔒 Age verification status: Successfully redacted and ignored forever.</span>
+                        <span>🎮 Fictional Entertainment Only</span>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                    <button onclick="downloadReport()" class="flex-1 py-3 px-4 rounded-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-lg shadow-emerald-600/25 transition flex items-center justify-center gap-2 text-sm">
+                        <span>💾</span>
+                        <span>Download Results Report (.txt)</span>
+                    </button>
+                    <button onclick="resetGame()" class="py-3 px-5 rounded-xl font-medium bg-slate-900/80 hover:bg-slate-800 border border-purple-900/60 text-purple-300 transition text-sm">
+                        🔄 Play Again
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="w-full py-4 text-center text-xs text-purple-400/60 border-t border-purple-900/20 bg-slate-900/30">
+        Cosmic Humor Analyzer • Built for maximum laughter and zero scientific accuracy.
+    </footer>
+
+    <script>
+        // Global Application State
+        let state = {
+            nickname: '',
+            age: '',
+            selectedThemeId: null,
+            currentQuestionIndex: 0,
+            answers: [] // stores selected option indices (0-4) for 8 questions
+        };
+
+        // Theme Definitions (7 Themes)
+        const themes = [
+            {
+                id: 'superpower',
+                title: 'What superpower do I possess',
+                icon: '⚡',
+                description: 'Uncover the absurd, highly inconvenient supernatural gift wired into your DNA.'
+            },
+            {
+                id: 'other_world_race',
+                title: 'What race do I belong to in another world',
+                icon: '🧝',
+                description: 'Discover whether your soul belongs to an elf, ork, or a deeply caffeinated goblin.'
+            },
+            {
+                id: 'evil_disney',
+                title: 'My evil Disney character',
+                icon: '🍎',
+                description: 'Find out which animated villainous mastermind shares your chaotic inner monologue.'
+            },
+            {
+                id: 'ancient_horoscope',
+                title: 'My ancient times horoscope',
+                icon: '📜',
+                description: 'Consult the lost celestial zodiac carved into mystical stone tablets.'
+            },
+            {
+                id: 'witchcraft',
+                title: 'My witchcraft',
+                icon: '🪄',
+                description: 'Examine your unique brand of potion-brewing, hex-weaving sorcery.'
+            },
+            {
+                id: 'furniture',
+                title: 'My character (Apartment furniture)',
+                icon: '🛋️',
+                description: 'A deeply psychological journey revealing which piece of household furniture mirrors your soul. (Hidden until the end!)'
+            },
+            {
+                id: 'spirit_animal',
+                title: 'My spirit animal',
+                icon: '🦝',
+                description: 'Meet the majestic or delightfully unhinged beast walking beside your spiritual aura.'
+            }
+        ];
+
+        // 8 Quirky Questions per Theme (5 options A-E each)
+        const questionsDatabase = {
+            superpower: [
+                {
+                    q: "If a stray pigeon makes aggressive eye contact with you on a park bench, your immediate tactical response is:",
+                    options: [
+                        "A) Stare back with equal dominance until it blinks.",
+                        "B) Offer it half a pocket lint ball as a gesture of peace.",
+                        "C) Assume it's a government spy drone and whisper code words.",
+                        "D) Immediately burst into interpretive opera singing.",
+                        "E) Pretend you are also a pigeon and peck the ground."
+                    ]
+                },
+                {
+                    q: "You find a mysterious glowing yellow button labeled 'DO NOT PRESS' in an elevator. What do you do?",
+                    options: [
+                        "A) Press it three times rapidly to see if it triggers bonus levels.",
+                        "B) Lick it to test for chemical conductivity.",
+                        "C) Stand guard next to it and charge passersby a viewing fee.",
+                        "D) Panic, press it with your elbow, and exit on the next floor.",
+                        "E) Eat a sandwich in front of it while maintaining unbroken eye contact."
+                    ]
+                },
+                {
+                    q: "When confronted by an animated sentient toaster that refuses to pop up your bagel, you:",
+                    options: [
+                        "A) Negotiate a peace treaty involving cream cheese concessions.",
+                        "B) Threaten it with immediate water immersion.",
+                        "C) Write a scathing 1-star Yelp review for your kitchen appliances.",
+                        "D) Accept your fate as the toaster's loyal human servant.",
+                        "E) Unplug it and cry softly into the cold bread."
+                    ]
+                },
+                {
+                    q: "Your preferred mode of transportation during a mild zombie apocalypse would be:",
+                    options: [
+                        "A) A shopping cart with one squeaky wheel modified with nitro boosters.",
+                        "B) Piggybacking on a very confused moose.",
+                        "C) Rolling inside an inflatable hamster ball coated in glitter.",
+                        "D) Staying inside and pretending you aren't home.",
+                        "E) A bicycle powered entirely by righteous anger and lukewarm coffee."
+                    ]
+                },
+                {
+                    q: "How do you handle socks that mysteriously vanish inside the washing machine vortex?",
+                    options: [
+                        "A) File missing person reports with the local laundry police.",
+                        "B) Assume they formed an underground civilization and moved on.",
+                        "C) Wear mismatched neon socks and claim it's high fashion.",
+                        "D) Scream 'Give me back my argyles!' into the dryer vent.",
+                        "E) Sacrifice a single shoelace to appease the laundry gods."
+                    ]
+                },
+                {
+                    q: "If you woke up tomorrow morning with your hair permanently styled into a live bonsai tree, you would:",
+                    options: [
+                        "A) Start charging tourists $5 for trimming sessions.",
+                        "B) Water yourself with chamomile tea every morning.",
+                        "C) Panic because you forgot to bring fertilizer.",
+                        "D) Lean into the botanical aesthetic and wear pots as shoes.",
+                        "E) Attempt to grow tiny plastic fruit for snacks."
+                    ]
+                },
+                {
+                    q: "What is your stance on mysterious glowing portals appearing in your pantry behind the cereal boxes?",
+                    options: [
+                        "A) Step right through with a spoon and a bowl of milk.",
+                        "B) Block it with stale boxes of bran flakes.",
+                        "C) Rent out the portal to interstellar hitchhikers on Airbnb.",
+                        "D) Poke it cautiously with a broomstick while narrating an epic film.",
+                        "E) Complain that the portal is blocking your cinnamon toast crunch."
+                    ]
+                },
+                {
+                    q: "What sound does your brain make when you try to remember why you walked into the kitchen?",
+                    options: [
+                        "A) A loud Windows XP error chime followed by dial-up noises.",
+                        "B) A single lonely cricket chirping in an empty cave.",
+                        "C) Dramatic heavy metal guitar screeching.",
+                        "D) The sound of a deflating balloon losing air.",
+                        "E) Complete eerie silence, as if tumbleweed is rolling past."
+                    ]
+                }
+            ],
+            other_world_race: [
+                {
+                    q: "When navigating a grocery store aisle during peak Saturday rush hours, your combat style is best described as:",
+                    options: [
+                        "A) Stealthy ninja weaving gracefully between slow-moving grandmas.",
+                        "B) Berserker charge with a shopping cart battering ram.",
+                        "C) Passive-aggressive sighing loud enough to alter air pressure.",
+                        "D) Abandoning your cart and retreating to the parking lot.",
+                        "E) Teleporting mentally to a tropical island beach."
+                    ]
+                },
+                {
+                    q: "Your relationship with modern Wi-Fi routers can be characterized as:",
+                    options: [
+                        "A) A sacred, fragile alliance requiring daily sacrifices and reboot dances.",
+                        "B) Pure hatred; you believe the blinking lights are judging you.",
+                        "C) Total dependency; you panic if your ping exceeds 25ms.",
+                        "D) You occasionally yell at it in ancient Sumerian dialects.",
+                        "E) You believe the router is housing tiny invisible gremlins."
+                    ]
+                },
+                {
+                    q: "If you were offered a crown made entirely of sharp Lego bricks, you would:",
+                    options: [
+                        "A) Wear it proudly as a symbol of absolute pain tolerance.",
+                        "B) Melt it down to make high-durability armor plating.",
+                        "C) Force your mortal enemies to walk barefoot across it.",
+                        "D) Decline politely and request a softer crown made of marshmallows.",
+                        "E) Step on it immediately out of sheer chaotic curiosity."
+                    ]
+                },
+                {
+                    q: "How do you react when someone tries to make small talk in an elevator before 9 AM?",
+                    options: [
+                        "A) Hiss softly like a nocturnal woodland creature.",
+                        "B) Stare blankly into the digital floor indicator until time stops.",
+                        "C) Pretend to take an urgent phone call from an intergalactic ambassador.",
+                        "D) Explain the thermodynamic properties of elevator cables in detail.",
+                        "E) Press every single button and whisper 'May the odds be ever in your favor'."
+                    ]
+                },
+                {
+                    q: "What is your secret weapon when surviving a terribly boring Monday meeting?",
+                    options: [
+                        "A) Mental chess tournaments against imaginary grandmasters.",
+                        "B) Calculating how many minutes until lunch down to the millisecond.",
+                        "C) Doodling aggressive cartoon cats in your notebook.",
+                        "D) Nodding intensely while completely daydreaming about tacos.",
+                        "E) Staring at a colleague until they feel uncomfortable."
+                    ]
+                },
+                {
+                    q: "When faced with an IKEA furniture assembly instruction manual with zero text and confusing diagrams:",
+                    options: [
+                        "A) Ignore the manual and improvise a weird three-legged wooden beast.",
+                        "B) Cry softly while holding leftover screws like precious gems.",
+                        "C) Summon ancestral crafting spirits through interpretive dance.",
+                        "D) Use duct tape and supreme confidence to solve all structural flaws.",
+                        "E) Blame the allen wrench and accept the wobbly table fate."
+                    ]
+                },
+                {
+                    q: "Your preferred tactical defense mechanism when someone eats the last slice of pizza you saved is:",
+                    options: [
+                        "A) Launching an immediate psychological smear campaign.",
+                        "B) Staging a dramatic sit-in protest on the kitchen floor.",
+                        "C) Accepting the betrayal with cold, silent, eternal vengeance.",
+                        "D) Consuming an entire tub of ice cream in direct defiance.",
+                        "E) Writing a strongly worded legal notice in ketchup."
+                    ]
+                },
+                {
+                    q: "How do you judge whether a magical potion or beverage is safe to drink?",
+                    options: [
+                        "A) Give it to your pet goldfish first (just kidding, check color saturation).",
+                        "B) If it sparkles neon purple, drink it without hesitation.",
+                        "C) Smell it cautiously and sneeze three times.",
+                        "D) Pour it on a houseplant and observe if leaves turn into glitter.",
+                        "E) Bottoms up! Whatever doesn't kill you makes for a great story."
+                    ]
+                }
+            ],
+            evil_disney: [
+                {
+                    q: "What is your signature evil lair aesthetic interior design choice?",
+                    options: [
+                        "A) Velvet drapes, flickering candelabras, and dramatic shadows.",
+                        "B) Sleek industrial chrome with an overlord control dashboard.",
+                        "C) A chaotic swamp cottage overflowing with bubbling cauldrons and dusty spellbooks.",
+                        "D) A gleaming golden throne room with excessive red velvet carpets.",
+                        "E) A cozy underground lair filled with bean bag chairs and villainous snack bars."
+                    ]
+                },
+                {
+                    q: "How do you typically monologue when your grand scheme is finally revealed?",
+                    options: [
+                        "A) With theatrical laughter echoing off high stone towers.",
+                        "B) Calmly sipping tea while explaining your complex excel spreadsheet of doom.",
+                        "C) Cackling maniacally while stirring a glowing green stew.",
+                        "D) Whispering menacing poetry into a looking glass.",
+                        "E) Singing a catchy Broadway tune about world domination."
+                    ]
+                },
+                {
+                    q: "What is your fatal flaw as an ambitious antagonist?",
+                    options: [
+                        "A) Arrogant overconfidence and refusing to double-check trap door safety locks.",
+                        "B) Stopping your villainous plan to pet every stray cat that crosses your path.",
+                        "C) Getting easily distracted by gourmet pastries and coffee breaks.",
+                        "D) Trusting incompetent henchmen who drop things.",
+                        "E) Leaving your diary of evil blueprints right out in the open."
+                    ]
+                },
+                {
+                    q: "Who is your ideal, highly dysfunctional sidekick companion?",
+                    options: [
+                        "A) A sarcastic talking raven who judges your life choices.",
+                        "B) A clumsy robotic assistant that sparks whenever it gets nervous.",
+                        "C) A glowing mischievous imp made entirely of pure sass.",
+                        "D) A giant misunderstood monster with a heart of gold and terrible allergies.",
+                        "E) A loyal slime creature that doubles as a footstool."
+                    ]
+                },
+                {
+                    q: "How do you celebrate conquering a minor inconvenience, like finding a parking spot right in front?",
+                    options: [
+                        "A) Raise your hands in triumphant dark victory.",
+                        "B) Smirk wickedly at neighboring drivers who missed out.",
+                        "C) Do a little victory jig while walking to the store.",
+                        "D) Whisper 'All according to plan' to yourself.",
+                        "E) Treat yourself to an exorbitant amount of candy."
+                    ]
+                },
+                {
+                    q: "What kind of pet do you keep in your sinister fortress?",
+                    options: [
+                        "A) A sleek, glowing-eyed black panther with attitude.",
+                        "B) A flock of sarcastic geese trained for tactical aerial strikes.",
+                        "C) A three-headed turtle named Sir Fluffington.",
+                        "D) An ancient grumpy dragon that just wants to nap.",
+                        "E) No pets, just an army of highly organized mechanical hamsters."
+                    ]
+                },
+                {
+                    q: "Your reaction when your foolproof master plan hits a tiny speed bump is:",
+                    options: [
+                        "A) Dramatic sigh, dramatic hair flip, immediate backup scheme execution.",
+                        "B) Dramatic table flip and blaming the henchmen.",
+                        "C) Laughing it off because chaos is your true aesthetic.",
+                        "D) Pouting in your tower until someone brings you snacks.",
+                        "E) Rewriting your evil five-year plan with neon pink highlighters."
+                    ]
+                },
+                {
+                    q: "What is your ultimate dream retirement goal after conquering the kingdom?",
+                    options: [
+                        "A) Ruling from a majestic throne while sipping tropical elixirs.",
+                        "B) Opening a bakery that specializes in pastries shaped like villain symbols.",
+                        "C) Sleeping for a solid 300 uninterrupted years.",
+                        "D) Traveling the multiverse in search of better coffee beans.",
+                        "E) Quiet hermit life in a haunted castle by the sea."
+                    ]
+                }
+            ],
+            ancient_horoscope: [
+                {
+                    q: "According to ancient stone carvings, your birth constellation resembles which clumsy object?",
+                    options: [
+                        "A) The Great Burnt Toast of Destiny.",
+                        "B) The Constellation of the Stubbed Toe.",
+                        "C) The Sacred Wandering Sock of the Cosmos.",
+                        "D) The Cosmic Cup of Lukewarm Tea.",
+                        "E) The Infinite Spilled Coffee Stain."
+                    ]
+                },
+                {
+                    q: "What planetary alignment brings you maximum mystical fortune?",
+                    options: [
+                        "A) When Mars aligns with your bed pillow at 2 PM on a Sunday.",
+                        "B) When the Moon turns the color of nacho cheese.",
+                        "C) When Mercury is in retrograde and your Wi-Fi drops out.",
+                        "D) When Jupiter and your cat's nap schedule synchronize perfectly.",
+                        "E) When zero planets are paying attention to you."
+                    ]
+                },
+                {
+                    q: "What ancient elemental force rules your temperamental spirit?",
+                    options: [
+                        "A) The Element of Sarcastic Fire.",
+                        "B) The Element of Liquid Procrastination.",
+                        "C) The Element of Stubborn Granite and Snacks.",
+                        "D) The Element of Chaotic Electric Sparks.",
+                        "E) The Element of Soft Cozy Blankets."
+                    ]
+                },
+                {
+                    q: "How do ancient shamans interpret your morning grogginess?",
+                    options: [
+                        "A) As a sacred state of astral meditation between dimensions.",
+                        "B) As a cursed state requiring heavy doses of caffeine potion.",
+                        "C) As a protective spell warding off annoying morning people.",
+                        "D) As total alignment with sloth spirits.",
+                        "E) As regular Tuesday behavior."
+                    ]
+                },
+                {
+                    q: "What sacred animal totem guides your career choices?",
+                    options: [
+                        "A) The Raccoon raiding a midnight dumpster.",
+                        "B) The Sloth hanging upside down from a ceiling fan.",
+                        "C) The Honey Badger that literally does not care.",
+                        "D) The House Cat knocking a glass off the table while maintaining eye contact.",
+                        "E) The Opossum playing dead when taxes are due."
+                    ]
+                },
+                {
+                    q: "What prophecy was written about your legendary clumsiness in ancient scrolls?",
+                    options: [
+                        "A) 'He shall trip over flat carpets, yet still conquer realms.'",
+                        "B) 'The chosen one who drops their phone screen-down every single time.'",
+                        "C) 'Blessed is he who forgets why he entered rooms.'",
+                        "D) 'Bearer of the unbreakable coffee mug of resilience.'",
+                        "E) 'Destined to spill sauce on their favorite white shirt.'"
+                    ]
+                },
+                {
+                    q: "What mystical gemstone resonates with your aura?",
+                    options: [
+                        "A) Glittering Purple Cubic Zirconia of Ambition.",
+                        "B) The Mystic Crystal of Infinite Naptime.",
+                        "C) Jade stone of minor inconvenience defense.",
+                        "D) Obsidian rock of perpetual sarcasm.",
+                        "E) A shiny pebble you found in your pocket."
+                    ]
+                },
+                {
+                    q: "How should mortals greet you when your astrological season arrives?",
+                    options: [
+                        "A) By bowing and offering tribute in the form of snacks.",
+                        "B) By leaving you strictly alone in peace and quiet.",
+                        "C) By bringing fresh coffee and whispering sweet compliments.",
+                        "D) By applauding your sheer ability to survive another week.",
+                        "E) With a polite nod and immediate retreat."
+                    ]
+                }
+            ],
+            witchcraft: [
+                {
+                    q: "What is the primary secret ingredient in your signature witchcraft brew?",
+                    options: [
+                        "A) Three crushed autumn leaves, moonlight, and a dash of cinnamon.",
+                        "B) Leftover espresso foam and pure stubborn willpower.",
+                        "C) Giggles of mischievous fairies and sarcastic tears.",
+                        "D) The dust bunnies collected under your sofa for five years.",
+                        "E) Glitter, attitude, and a hint of chaos."
+                    ]
+                },
+                {
+                    q: "What familiar animal assists you with your spellcasting rituals?",
+                    options: [
+                        "A) A chubby toad wearing tiny wizard spectacles.",
+                        "B) A cynical black cat that knocks over your potions.",
+                        "C) A spectral ferret that steals your glowing crystals.",
+                        "D) An overly enthusiastic golden retriever who ruins rituals with tail wags.",
+                        "E) A colony of industrious ants carrying spell ingredients."
+                    ]
+                },
+                {
+                    q: "If your cauldron overflows during a full moon ritual, your magical reaction is:",
+                    options: [
+                        "A) Chant an ancient counter-spell while frantically mopping.",
+                        "B) Blame the apprentice (or the cat) and eat a cookie.",
+                        "C) Declare the mess a modern art masterpiece.",
+                        "D) Turn the soapy foam into colorful floating soap bubbles.",
+                        "E) Abandon the kitchen and order takeout pizza."
+                    ]
+                },
+                {
+                    q: "What hex or curse do you keep ready for annoying telemarketers?",
+                    options: [
+                        "A) The Curse of Endless Hiccups Every Time They Say 'Hello'.",
+                        "B) The Hex of Eternal Telemarketing Hold Music.",
+                        "C) Turning their headset into a live squeaky rubber chicken.",
+                        "D) Forcing them to speak entirely in cat meows.",
+                        "E) Teleporting them straight into a pile of autumn leaves."
+                    ]
+                },
+                {
+                    q: "What is your preferred mystical flying apparatus?",
+                    options: [
+                        "A) A classic handmade broomstick with ergonomic lumbar support.",
+                        "B) A flying velvet armchair outfitted with cup holders.",
+                        "C) A magical hoverboard powered by sparkles.",
+                        "D) A giant levitating pillow for maximum nap potential.",
+                        "E) You prefer teleportation via dramatic smoke bombs."
+                    ]
+                },
+                {
+                    q: "How do you store your forbidden magical grimoires and spell books?",
+                    options: [
+                        "A) Floating on magnetic pedestals surrounded by glowing runes.",
+                        "B) Stacked haphazardly under your coffee table to steady a wobbly leg.",
+                        "C) Locked inside a chest guarded by riddle-loving puzzles.",
+                        "D) Digitally stored on a cloud drive named 'Spooky Stuff'.",
+                        "E) Scattered across your bed like ancient blankets."
+                    ]
+                },
+                {
+                    q: "What scent does your magical aura naturally emit?",
+                    options: [
+                        "A) Fresh pine needles, thunderstorms, and old parchment.",
+                        "B) Warm vanilla cookies and impending mischief.",
+                        "C) Mysterious ozone and cheap perfume.",
+                        "D) Freshly brewed coffee and ancient secrets.",
+                        "E) Lavender mixed with absolute chaos."
+                    ]
+                },
+                {
+                    q: "What is your supreme motto as a modern arcane spellcaster?",
+                    options: [
+                        "A) 'As above, so below, but first let me finish my coffee.'",
+                        "B) 'Never cast a spell you can accomplish with sarcasm.'",
+                        "C) 'Magic is just science with better lighting and dramatic flair.'",
+                        "D) 'Witch better have my money (and my tea).'",
+                        "E) 'Keep calm and levitate.'"
+                    ]
+                }
+            ],
+            furniture: [
+                {
+                    q: "When guests arrive at your sanctuary, your structural philosophy is:",
+                    options: [
+                        "A) Offer them absolute comfort wrapped in luxurious cushions.",
+                        "B) Provide firm support, but let them know you require personal space.",
+                        "C) Be mysterious, multi-functional, and slightly quirky.",
+                        "D) Creak ominously whenever anyone sits down too fast.",
+                        "E) Be so comfortable that nobody ever wants to leave."
+                    ]
+                },
+                {
+                    q: "How do you handle the daily weight of existential responsibilities?",
+                    options: [
+                        "A) Distribute weight evenly across sturdy wooden legs.",
+                        "B) Sag gently in the middle when things get too heavy.",
+                        "C) Absorb pressure quietly while hiding clutter underneath.",
+                        "D) Recline backward and let someone else deal with it.",
+                        "E) Support your friends so well your back hurts."
+                    ]
+                },
+                {
+                    q: "What is your favorite pastime when the apartment is completely empty?",
+                    options: [
+                        "A) Gathering dust in peaceful, contemplative silence.",
+                        "B) Collecting remote controls and rogue socks in hidden crevices.",
+                        "C) Listening to the floorboards creak and whispering secrets.",
+                        "D) Acting as a makeshift jungle gym for stray cats.",
+                        "E) Reflecting on your polish and varnish finish."
+                    ]
+                },
+                {
+                    q: "How do you respond when someone spills coffee or tea on your surface?",
+                    options: [
+                        "A) Absorb it with quiet dignity and demand immediate wiping.",
+                        "B) Leave a permanent stain as a badge of honor and battle scars.",
+                        "C) Panic internally and demand a coaster sacrifice.",
+                        "D) Turn it into a modern abstract art pattern.",
+                        "E) Forgive them instantly because you are too soft."
+                    ]
+                },
+                {
+                    q: "What is your ideal environmental lighting in the room?",
+                    options: [
+                        "A) Warm amber reading lamps and cozy shadows.",
+                        "B) Direct neon spotlights highlighting your best angles.",
+                        "C) Mysterious dim candlelight flickering through stained glass.",
+                        "D) Soft morning sunlight streaming across your cushions.",
+                        "E) Total darkness with glowing fairy lights."
+                    ]
+                },
+                {
+                    q: "If someone tries to rearrange your position in the living room, you:",
+                    options: [
+                        "A) Protest with loud, obnoxious floor-scratching sounds.",
+                        "B) Accept your new location with philosophical serenity.",
+                        "C) Secretly plan to slide back to your favorite corner overnight.",
+                        "D) Refuse to budge because feng shui demands your exact spot.",
+                        "E) Complain that your new view of the TV is subpar."
+                    ]
+                },
+                {
+                    q: "What texture best describes your inner personality?",
+                    options: [
+                        "A) Soft velvet with high-density foam filling.",
+                        "B) Polished mahogany wood with ornate carved edges.",
+                        "C) Distressed leather with stories to tell.",
+                        "D) Fluffy woven fabric prone to static electricity.",
+                        "E) Sleek minimalist metal and glass."
+                    ]
+                },
+                {
+                    q: "What is your ultimate contribution to the domestic ecosystem?",
+                    options: [
+                        "A) Providing a cozy haven for afternoon naps and relaxation.",
+                        "B) Holding up everyone else's chaotic lives without breaking.",
+                        "C) Adding style and elegance to an otherwise messy apartment.",
+                        "D) Serving as a storage station for half-read books and snacks.",
+                        "E) Being the indestructible heart of the living room."
+                    ]
+                }
+            ],
+            spirit_animal: [
+                {
+                    q: "How do you react when someone steals your favorite parking spot or seat?",
+                    options: [
+                        "A) Channel inner honey badger fury and unleash a silent death stare.",
+                        "B) Sigh deeply, retreat to your den, and plot sweet vengeance.",
+                        "C) Pretend you didn't care anyway while silently seething.",
+                        "D) Express your outrage through expressive interpretive gestures.",
+                        "E) Take a nap because life is too short for parking drama."
+                    ]
+                },
+                {
+                    q: "What is your natural habitat on a rainy Sunday afternoon?",
+                    options: [
+                        "A) Burrowed deep under a fortress of blankets like a hibernating bear.",
+                        "B) Perched high on a windowsill judging neighborhood squirrels.",
+                        "C) Pacing around your kitchen in search of mystical snacks.",
+                        "D) Staring into the middle distance while contemplating universe mysteries.",
+                        "E) Doing absolutely nothing and conserving peak feline energy."
+                    ]
+                },
+                {
+                    q: "How do you approach a complex, multi-layered problem at work or school?",
+                    options: [
+                        "A) Smash through it with brute confidence and excessive enthusiasm.",
+                        "B) Circle around it stealthily until it resolves itself out of fear.",
+                        "C) Delegate it to someone else while you take a coffee sabbatical.",
+                        "D) Stare at it until someone takes pity and helps you.",
+                        "E) Ignore it until the deadline transforms into an emergency monster."
+                    ]
+                },
+                {
+                    q: "What sound best expresses your inner emotional state before your morning coffee?",
+                    options: [
+                        "A) A low, warning grizzly bear growl.",
+                        "B) A dramatic raccoon screech from inside a dumpster.",
+                        "C) The sound of a dial-up modem struggling to connect.",
+                        "D) Peaceful opossum snoring.",
+                        "E) Absolute, chilling, motionless silence."
+                    ]
+                },
+                {
+                    q: "How do you pack for a weekend vacation trip?",
+                    options: [
+                        "A) Pack 14 outfits for a 2-day trip 'just in case of emergency fashion'.",
+                        "B) Throw three mismatched socks and a bag of chips into a plastic grocery bag.",
+                        "C) Pack entirely snacks, leaving zero room for clothes.",
+                        "D) Forget half your essentials and buy them again at your destination.",
+                        "E) Travel light with zero luggage, relying entirely on charm."
+                    ]
+                },
+                {
+                    q: "What is your favorite defense mechanism against awkward social interactions?",
+                    options: [
+                        "A) Playing dead like an opossum until the person goes away.",
+                        "B) Camouflaging into the wallpaper like a chameleon.",
+                        "C) Changing the subject abruptly to a bizarre trivia fact about geese.",
+                        "D) Slow-blinking until they feel awkward and walk away.",
+                        "E) Faking an urgent text message from an imaginary alien."
+                    ]
+                },
+                {
+                    q: "How do you judge a new acquaintance upon first meeting?",
+                    options: [
+                        "A) Sniff their aura discreetly like a suspicious hound.",
+                        "B) Evaluate whether they are willing to share their fries.",
+                        "C) Stare intently to see if they flinch under your gaze.",
+                        "D) Offer them a snack test to check their moral alignment.",
+                        "E) Assume they are cool until proven otherwise."
+                    ]
+                },
+                {
+                    q: "What is your life motto when things go completely sideways?",
+                    options: [
+                        "A) 'If at first you don't succeed, roar loudly and try again.'",
+                        "B) 'This is fine. Everything is on fire, but this is fine.'",
+                        "C) 'When in doubt, take a nap and blame the raccoon.'",
+                        "D) 'Act like you meant to do that all along.'",
+                        "E) 'Chaos is just another word for exciting adventure.'"
+                    ]
+                }
+            ]
+        };
+
+        // Initialize App on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderThemes();
+        });
+
+        // Step 1 Submission Handler
+        function handleStep1Submit(e) {
+            e.preventDefault();
+            const nicknameInput = document.getElementById('input-nickname').value.trim();
+            const ageInput = document.getElementById('input-age').value.trim();
+
+            if (!nicknameInput || !ageInput) return;
+
+            state.nickname = nicknameInput;
+            state.age = ageInput; // Stored securely in state, NEVER shown in results!
+
+            // Switch to Step 2
+            document.getElementById('view-step1').classList.add('hidden');
+            document.getElementById('view-step2').classList.remove('hidden');
+            document.getElementById('step-indicator').textContent = 'Step 2: Choose Your Theme';
+            document.getElementById('display-nickname').textContent = state.nickname;
+        }
+
+        // Render Theme Selection Grid
+        function renderThemes() {
+            const grid = document.getElementById('themes-grid');
+            grid.innerHTML = '';
+
+            themes.forEach(theme => {
+                const card = document.createElement('div');
+                card.className = `option-card p-4 rounded-2xl bg-slate-900/80 border border-purple-900/50 cursor-pointer transition flex flex-col justify-between hover:bg-purple-950/40`;
+                card.innerHTML = `
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl">${theme.icon}</span>
+                            <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-purple-950 text-purple-300 border border-purple-800/50">8 Questions</span>
+                        </div>
+                        <h3 class="font-bold text-white text-base">${theme.title}</h3>
+                        <p class="text-xs text-purple-300/80 leading-relaxed">${theme.description}</p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-purple-900/30 flex items-center justify-between text-xs font-semibold text-pink-400">
+                        <span>Select Theme</span>
+                        <span>→</span>
+                    </div>
+                `;
+                card.onclick = () => selectTheme(theme.id);
+                grid.appendChild(card);
+            });
+        }
+
+        // Select Theme & Start Quiz
+        function selectTheme(themeId) {
+            state.selectedThemeId = themeId;
+            state.currentQuestionIndex = 0;
+            state.answers = new Array(8).fill(null);
+
+            document.getElementById('view-step2').classList.add('hidden');
+            document.getElementById('view-quiz').classList.remove('hidden');
+            
+            const currentThemeObj = themes.find(t => t.id === themeId);
+            document.getElementById('quiz-theme-title').textContent = currentThemeObj.title;
+
+            loadQuestion();
+        }
+
+        // Load Current Question
+        function loadQuestion() {
+            const themeQuestions = questionsDatabase[state.selectedThemeId];
+            const qData = themeQuestions[state.currentQuestionIndex];
+
+            document.getElementById('quiz-progress').textContent = `Question ${state.currentQuestionIndex + 1} of 8`;
+            document.getElementById('question-text').textContent = qData.q;
+
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            qData.options.forEach((optText, index) => {
+                const isSelected = state.answers[state.currentQuestionIndex] === index;
+                const btn = document.createElement('div');
+                btn.className = `p-3.5 rounded-xl border cursor-pointer transition flex items-center space-x-3 text-sm ${
+                    isSelected 
+                        ? 'bg-purple-600/30 border-purple-500 text-white shadow-md shadow-purple-600/20' 
+                        : 'bg-slate-900/60 border-purple-900/50 text-purple-200 hover:bg-slate-900 hover:border-purple-700'
+                }`;
+                
+                btn.innerHTML = `
+                    <div class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                        isSelected ? 'bg-purple-500 text-white' : 'bg-purple-950 text-purple-400 border border-purple-800'
+                    }">${String.fromCharCode(65 + index)}</div>
+                    <div class="flex-grow">${optText.substring(2)}</div>
+                `;
+
+                btn.onclick = () => selectOption(index);
+                optionsContainer.appendChild(btn);
+            });
+
+            // Update Navigation Buttons
+            document.getElementById('btn-prev').disabled = state.currentQuestionIndex === 0;
+            const nextBtn = document.getElementById('btn-next');
+            nextBtn.disabled = state.answers[state.currentQuestionIndex] === null;
+            nextBtn.textContent = state.currentQuestionIndex === 7 ? 'Generate Results ✨' : 'Next Question →';
+        }
+
+        // Select Option
+        function selectOption(optionIndex) {
+            state.answers[state.currentQuestionIndex] = optionIndex;
+            loadQuestion(); // Re-render to show active selection
+        }
+
+        // Previous Question
+        function prevQuestion() {
+            if (state.currentQuestionIndex > 0) {
+                state.currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+
+        // Next Question or Finish
+        function nextQuestion() {
+            if (state.answers[state.currentQuestionIndex] === null) return;
+
+            if (state.currentQuestionIndex < 7) {
+                state.currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        // Compute and Display Results
+        function showResults() {
+            document.getElementById('view-quiz').classList.add('hidden');
+            document.getElementById('view-results').classList.remove('hidden');
+            document.getElementById('step-indicator').textContent = 'Step 3: Cosmic Dossier Result';
+
+            document.getElementById('result-nickname').textContent = state.nickname;
+            const currentThemeObj = themes.find(t => t.id === state.selectedThemeId);
+            document.getElementById('result-theme').textContent = currentThemeObj.title;
+
+            // Generate humorous psychological assessment based on answer patterns
+            const assessment = generateHumorousAssessment();
+            document.getElementById('result-headline').textContent = assessment.headline;
+            document.getElementById('result-description').textContent = assessment.description;
+
+            // Handle secret furniture reveal if theme is furniture or as an easter egg surprise
+            const furnitureBox = document.getElementById('furniture-reveal-box');
+            if (state.selectedThemeId === 'furniture') {
+                furnitureBox.classList.remove('hidden');
+                document.getElementById('result-furniture').textContent = assessment.furnitureReveal;
+            } else {
+                furnitureBox.classList.add('hidden');
+            }
+        }
+
+        // Algorithmic Humor Generator based on answers & nickname
+        function generateHumorousAssessment() {
+            const sumAnswers = state.answers.reduce((a, b) => a + (b || 0), 0);
+            const theme = state.selectedThemeId;
+            let headline = "";
+            let description = "";
+            let furnitureReveal = "";
+
+            // Custom flavor based on theme
+            if (theme === 'superpower') {
+                const powers = [
+                    "The uncanny ability to summon tepid lukewarm tea at will, startling local pigeons.",
+                    "Telepathic connection with lost TV remote controls across multiple dimensions.",
+                    "Invisibility, but only when nobody is looking at you anyway.",
+                    "The power to make any printer jam instantly by merely glancing at it.",
+                    "Super-speed fastening of hoodies and tripping over flat carpets."
+                ];
+                headline = `Superpower Manifestation: ${powers[sumAnswers % powers.length]}`;
+                description = `Dear ${state.nickname}, our quantum neural scanners reveal that your subconscious choices scream absolute unhinged chaotic energy. You possess a unique supernatural aura that mildly inconveniences Wi-Fi signals and confuses inanimate objects. Use your powers wisely for minor petty vengeance and snack procurement.`;
+            } else if (theme === 'other_world_race') {
+                const races = [
+                    "A chronically sleep-deprived forest Elf who trades leaves for espresso.",
+                    "An aggressive Orc berserker whose main weapon is a squeaky foam hammer.",
+                    "A goblin archivist guarding a sacred mountain hoard of dusty snack wrappers.",
+                    "A celestial star-elf who forgot why they descended to mortal realms.",
+                    "A mystical swamp wizard with impeccable shoe fashion."
+                ];
+                headline = `Otherworldly Heritage: ${races[sumAnswers % races.length]}`;
+                description = `Greetings from across the dimensional veil, ${state.nickname}! Your psychological profile proves you do not belong in ordinary society. In another realm, you are legendary for your stubborn refusal to participate in morning small talk and your ability to befriend weird woodland critters.`;
+            } else if (theme === 'evil_disney') {
+                const villains = [
+                    "The Grand Mastermind of Slacking and Midnight Snack Raids.",
+                    "The Wicked Overlord of Eternal Wi-Fi Buffering.",
+                    "The Cackling Baroness of Sarcastic Remarks and Cozy Blankets.",
+                    "The Sorcerer Supreme of Procrastination and Last-Minute Miracles.",
+                    "The Supreme Villain whose evil laugh sounds like a happy duck."
+                ];
+                headline = `Villainous Persona: ${villains[sumAnswers % villains.length]}`;
+                description = `Beware all ye who cross paths with ${state.nickname}! Your inner Disney villain is brilliantly theatrical, fiercely independent, and fueled by caffeine and spite. While your grand masterplans might get delayed because you stopped to pet a stray cat, your dramatic flair is unmatched across the seven kingdoms.`;
+            } else if (theme === 'ancient_horoscope') {
+                const signs = [
+                    "Born under the sign of the Eternal Spilled Coffee Cup.",
+                    "Ruled by the Great Constellation of the Stubbed Pinky Toe.",
+                    "Blessed by the Ancient Star-Tablet of the Midnight Snack Craver.",
+                    "Protected by the Sacred Wandering Sock of Astral Destiny.",
+                    "Under the governance of the Nebula of Chronic Daydreaming."
+                ];
+                headline = `Zodiac Alignment: ${signs[sumAnswers % signs.length]}`;
+                description = `Ancient shamans have consulted the mystical stone tablets for ${state.nickname}. Your celestial chart indicates a lifetime of triumphant clumsiness, brilliant late-night epiphanies, and supreme resilience against minor morning inconveniences. The stars themselves chuckle when you enter a room.`;
+            } else if (theme === 'witchcraft') {
+                const crafts = [
+                    "Brewing potions of irresistible sarcasm and extreme coziness.",
+                    "Weaving ancient hexes that turn telemarketers into rubber chickens.",
+                    "Mastering the arcane art of summoning hot pizza through sheer willpower.",
+                    "Casting spells of selective invisibility during boring Monday meetings.",
+                    "Crafting glowing elixirs of boundless chaotic energy."
+                ];
+                headline = `Arcane Specialization: ${crafts[sumAnswers % crafts.length]}`;
+                description = `Aha! The cauldron bubbles furiously for ${state.nickname}. Your witchcraft is not about ancient curses; it is modern, witty, and fueled by snacks and stubborn grace. Your familiar spirit is definitely plotting mischief right now.`;
+            } else if (theme === 'furniture') {
+                const furnitures = [
+                    "An extremely comfortable velvet armchair that hugs you a bit too tightly.",
+                    "A wobbly vintage wooden coffee table that holds up everyone else's secrets.",
+                    "A mysterious bookshelf filled with unread masterpieces and rogue candy wrappers.",
+                    "A plush bean bag chair that consumes anyone who sits in it.",
+                    "An elegant antique floor lamp that flickers whenever you tell a joke."
+                ];
+                headline = `Apartment Furniture Incarnation: ${furnitures[sumAnswers % furnitures.length]}`;
+                description = `The psychological revelation is complete, ${state.nickname}! You are the beating heart of domestic comfort, supporting your loved ones while secretly harboring dust bunnies and dreams of absolute peace and quiet.`;
+                furnitureReveal = `Surprise Punchline Reveal: Throughout this entire quiz, your soul has been secretly manifesting as ${furnitures[sumAnswers % furnitures.length]}. May your cushions forever remain fluffy and your coffee eternally warm!`;
+            } else {
+                // spirit animal
+                const animals = [
+                    "The Majestic Raccoon foraging through the cosmos with supreme confidence.",
+                    "The Sleepy Sloth hanging upside down from the ceiling fan of destiny.",
+                    "The Honey Badger that literally does not care about cosmic rules.",
+                    "The Strategic House Cat knocking over glasses just to watch physics work.",
+                    "The Wise Opossum playing dead whenever responsibilities approach."
+                ];
+                headline = `Spirit Animal Companion: ${animals[sumAnswers % animals.length]}`;
+                description = `Behold your true spiritual twin, ${state.nickname}! Whether you are raiding the kitchen at 2 AM like a triumphant raccoon or staring into the abyss with serene sloth energy, your spirit animal guides you through life's absurdities with unmatched style.`;
+            }
+
+            // Always ensure age is NEVER mentioned anywhere in the result text!
+            return { headline, description, furnitureReveal };
+        }
+
+        // Download Results Report as a File
+        function downloadReport() {
+            const currentThemeObj = themes.find(t => t.id === state.selectedThemeId);
+            const headlineText = document.getElementById('result-headline').textContent;
+            const descText = document.getElementById('result-description').textContent;
+            const furnitureText = document.getElementById('result-furniture') ? document.getElementById('result-furniture').textContent : '';
+
+            let reportContent = `==================================================\n`;
+            reportContent += `         COSMIC HUMOR ANALYZER DOSSIER           \n`;
+            reportContent += `==================================================\n\n`;
+            reportContent += `Nickname / Alias: ${state.nickname}\n`;
+            reportContent += `Selected Theme: ${currentThemeObj.title}\n`;
+            reportContent += `Disclaimer: Fictional entertainment report. Age status: Confidential & Redacted.\n\n`;
+            reportContent += `PRIMARY REVELATION:\n${headlineText}\n\n`;
+            reportContent += `PSYCHOLOGICAL BREAKDOWN:\n${descText}\n\n`;
+            if (furnitureText) {
+                reportContent += `SECRET FURNITURE MANIFESTATION:\n${furnitureText}\n\n`;
+            }
+            reportContent += `==================================================\n`;
+            reportContent += `Thank you for playing the Cosmic Humor Analyzer!\n`;
+
+            const blob = new Blob([reportContent], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${state.nickname}_Cosmic_Quiz_Report.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Reset Game
+        function resetGame() {
+            state = {
+                nickname: '',
+                age: '',
+                selectedThemeId: null,
+                currentQuestionIndex: 0,
+                answers: []
+            };
+
+            document.getElementById('input-nickname').value = '';
+            document.getElementById('input-age').value = '';
+
+            document.getElementById('view-results').classList.add('hidden');
+            document.getElementById('view-step1').classList.remove('hidden');
+            document.getElementById('step-indicator').textContent = 'Step 1: Introduction & Persona Setup';
+        }
+    </script>
+</body>
+</html>
